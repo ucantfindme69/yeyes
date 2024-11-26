@@ -1,294 +1,330 @@
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
+ local ScreenGui = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
-local TextLabel = Instance.new("TextLabel")
-local TextLabel_2 = Instance.new("TextLabel")
-local TextLabel_3 = Instance.new("TextLabel")
-local TextLabel_4 = Instance.new("TextLabel")
-local Frame_2 = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
 local UICorner_2 = Instance.new("UICorner")
-local TextButton = Instance.new("TextButton")
+local AutoCrate = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
-local Frame_3 = Instance.new("Frame")
+local LayOut3 = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
-local TextButton_2 = Instance.new("TextButton")
+local LayOut2 = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
-local Frame_4 = Instance.new("Frame")
+local LayOut1 = Instance.new("TextButton")
 local UICorner_6 = Instance.new("UICorner")
-local TextLabel_5 = Instance.new("TextLabel")
-local TextLabel_6 = Instance.new("TextLabel")
 
 --Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = game.CoreGui
 
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.274206668, 0, 0.254807681, 0)
-Frame.Size = UDim2.new(0, 555, 0, 305)
+main.Name = "main"
+main.Parent = ScreenGui
+main.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+main.Position = UDim2.new(0.320872277, 0, 0.1746988, 0)
+main.Size = UDim2.new(0, 437, 0, 324)
+main.Active = true
+main.Draggable = true
 
-UICorner.CornerRadius = UDim.new(0.100000001, 8)
-UICorner.Parent = Frame
+UICorner.CornerRadius = UDim.new(0, 12)
+UICorner.Parent = main
 
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.319127113, 0, 0.0346941948, 0)
-TextLabel.Size = UDim2.new(0, 200, 0, 28)
-TextLabel.Font = Enum.Font.Unknown
-TextLabel.Text = "KanarzHack"
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
+Title.Name = "Title"
+Title.Parent = main
+Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Title.Size = UDim2.new(0, 437, 0, 50)
+Title.Font = Enum.Font.DenkOne
+Title.Text = "Script Made By DINO#1390 | Miners Haven"
+Title.TextColor3 = Color3.fromRGB(255, 0, 4)
+Title.TextSize = 20.000
+Title.TextWrapped = true
 
-TextLabel_2.Parent = Frame
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BackgroundTransparency = 1.000
-TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_2.BorderSizePixel = 0
-TextLabel_2.Position = UDim2.new(0.0740820542, 0, 0.126497477, 0)
-TextLabel_2.Size = UDim2.new(0, 136, 0, 18)
-TextLabel_2.Font = Enum.Font.Unknown
-TextLabel_2.Text = "Modules"
-TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_2.TextScaled = true
-TextLabel_2.TextSize = 14.000
-TextLabel_2.TextWrapped = true
+UICorner_2.CornerRadius = UDim.new(0, 12)
+UICorner_2.Parent = Title
 
-TextLabel_3.Parent = Frame
-TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.BackgroundTransparency = 1.000
-TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.BorderSizePixel = 0
-TextLabel_3.Position = UDim2.new(0.376784742, 0, 0.126497477, 0)
-TextLabel_3.Size = UDim2.new(0, 136, 0, 18)
-TextLabel_3.Font = Enum.Font.Unknown
-TextLabel_3.Text = "Main"
-TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.TextScaled = true
-TextLabel_3.TextSize = 14.000
-TextLabel_3.TextWrapped = true
+AutoCrate.Name = "AutoCrate"
+AutoCrate.Parent = main
+AutoCrate.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+AutoCrate.Position = UDim2.new(0.270022869, 0, 0.246913582, 0)
+AutoCrate.Size = UDim2.new(0, 200, 0, 50)
+AutoCrate.Font = Enum.Font.DenkOne
+AutoCrate.Text = "AutoCrate"
+AutoCrate.TextColor3 = Color3.fromRGB(255, 0, 4)
+AutoCrate.TextSize = 20.000
 
-TextLabel_4.Parent = Frame
-TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_4.BackgroundTransparency = 1.000
-TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.BorderSizePixel = 0
-TextLabel_4.Position = UDim2.new(0.679487467, 0, 0.126497477, 0)
-TextLabel_4.Size = UDim2.new(0, 136, 0, 18)
-TextLabel_4.Font = Enum.Font.Unknown
-TextLabel_4.Text = "Credits"
-TextLabel_4.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.TextScaled = true
-TextLabel_4.TextSize = 14.000
-TextLabel_4.TextWrapped = true
+UICorner_3.CornerRadius = UDim.new(0, 12)
+UICorner_3.Parent = AutoCrate
 
-Frame_2.Parent = Frame
-Frame_2.BackgroundColor3 = Color3.fromRGB(226, 226, 226)
-Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame_2.BorderSizePixel = 0
-Frame_2.Position = UDim2.new(0.0612612627, 0, 0.222950816, 0)
-Frame_2.Size = UDim2.new(0, 150, 0, 218)
+LayOut3.Name = "LayOut3"
+LayOut3.Parent = main
+LayOut3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+LayOut3.Position = UDim2.new(0.270022869, 0, 0.768518507, 0)
+LayOut3.Size = UDim2.new(0, 200, 0, 50)
+LayOut3.Font = Enum.Font.DenkOne
+LayOut3.Text = "Layout 3"
+LayOut3.TextColor3 = Color3.fromRGB(255, 0, 4)
+LayOut3.TextSize = 20.000
 
-UICorner_2.CornerRadius = UDim.new(0.100000001, 8)
-UICorner_2.Parent = Frame_2
+UICorner_4.CornerRadius = UDim.new(0, 12)
+UICorner_4.Parent = LayOut3
 
-TextButton.Parent = Frame_2
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.0741031915, 0, 0.0596330389, 0)
-TextButton.Size = UDim2.new(0, 127, 0, 50)
-TextButton.Font = Enum.Font.Unknown
-TextButton.Text = "Auto Crate Open (Can't turn back off!)"
-TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextScaled = true
-TextButton.TextSize = 14.000
-TextButton.TextWrapped = true
+LayOut2.Name = "LayOut2"
+LayOut2.Parent = main
+LayOut2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+LayOut2.Position = UDim2.new(0.52860409, 0, 0.540123463, 0)
+LayOut2.Size = UDim2.new(0, 200, 0, 50)
+LayOut2.Font = Enum.Font.DenkOne
+LayOut2.Text = "Layout 2"
+LayOut2.TextColor3 = Color3.fromRGB(255, 0, 4)
+LayOut2.TextSize = 20.000
 
-UICorner_3.CornerRadius = UDim.new(0.100000001, 8)
-UICorner_3.Parent = TextButton
+UICorner_5.CornerRadius = UDim.new(0, 12)
+UICorner_5.Parent = LayOut2
 
-Frame_3.Parent = Frame
-Frame_3.BackgroundColor3 = Color3.fromRGB(226, 226, 226)
-Frame_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame_3.BorderSizePixel = 0
-Frame_3.Position = UDim2.new(0.363963962, 0, 0.222950816, 0)
-Frame_3.Size = UDim2.new(0, 150, 0, 218)
+LayOut1.Name = "LayOut1"
+LayOut1.Parent = main
+LayOut1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+LayOut1.Position = UDim2.new(0.0274599381, 0, 0.540123463, 0)
+LayOut1.Size = UDim2.new(0, 200, 0, 50)
+LayOut1.Font = Enum.Font.DenkOne
+LayOut1.Text = "Layout 1"
+LayOut1.TextColor3 = Color3.fromRGB(255, 0, 4)
+LayOut1.TextSize = 20.000
 
-UICorner_4.CornerRadius = UDim.new(0.100000001, 8)
-UICorner_4.Parent = Frame_3
-
-TextButton_2.Parent = Frame_3
-TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_2.BorderSizePixel = 0
-TextButton_2.Position = UDim2.new(0.0741031915, 0, 0.0596330464, 0)
-TextButton_2.Size = UDim2.new(0, 127, 0, 50)
-TextButton_2.Font = Enum.Font.Unknown
-TextButton_2.Text = "Start Collecting Crates (Can't turn back off!)"
-TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_2.TextScaled = true
-TextButton_2.TextSize = 14.000
-TextButton_2.TextWrapped = true
-
-UICorner_5.CornerRadius = UDim.new(0.100000001, 8)
-UICorner_5.Parent = TextButton_2
-
-Frame_4.Parent = Frame
-Frame_4.BackgroundColor3 = Color3.fromRGB(226, 226, 226)
-Frame_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame_4.BorderSizePixel = 0
-Frame_4.Position = UDim2.new(0.666666627, 0, 0.222950816, 0)
-Frame_4.Size = UDim2.new(0, 150, 0, 218)
-
-UICorner_6.CornerRadius = UDim.new(0.100000001, 8)
-UICorner_6.Parent = Frame_4
-
-TextLabel_5.Parent = Frame_4
-TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.BackgroundTransparency = 1.000
-TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_5.BorderSizePixel = 0
-TextLabel_5.Position = UDim2.new(0.0461539701, 0, 0.211096674, 0)
-TextLabel_5.Size = UDim2.new(0, 136, 0, 25)
-TextLabel_5.Font = Enum.Font.Unknown
-TextLabel_5.Text = "Kanarz - GUI Design"
-TextLabel_5.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_5.TextScaled = true
-TextLabel_5.TextSize = 14.000
-TextLabel_5.TextWrapped = true
-
-TextLabel_6.Parent = Frame_4
-TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_6.BackgroundTransparency = 1.000
-TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_6.BorderSizePixel = 0
-TextLabel_6.Position = UDim2.new(0.0461539701, 0, 0.0596330278, 0)
-TextLabel_6.Size = UDim2.new(0, 136, 0, 33)
-TextLabel_6.Font = Enum.Font.Unknown
-TextLabel_6.Text = "Slushpuppy - Scripts"
-TextLabel_6.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_6.TextScaled = true
-TextLabel_6.TextSize = 14.000
-TextLabel_6.TextWrapped = true
+UICorner_6.CornerRadius = UDim.new(0, 12)
+UICorner_6.Parent = LayOut1
 
 -- Scripts:
 
-local function ABOE_fake_script() -- TextButton.LocalScript 
-	local script = Instance.new('LocalScript', TextButton)
-
-	
-	button = script.Parent
-	
-	script.Parent.MouseButton1Click:Connect(function()
-		
-	for a=1,99999999 do
-		irapeda4yearoldboy()
-		wait(5)
-	end
-	
-	end)
-	
-	function irapeda4yearoldboy()
-		game:GetService("ReplicatedStorage").MysteryBox:InvokeServer("Regular")
-		game:GetService("ReplicatedStorage").MysteryBox:InvokeServer("Unreal")
-		game:GetService("ReplicatedStorage").MysteryBox:InvokeServer("Birthday")
-		game:GetService("ReplicatedStorage").MysteryBox:InvokeServer("Inferno")
-	end
-	
-end
-coroutine.wrap(ABOE_fake_script)()
-local function PAFVZ_fake_script() -- TextButton_2.LocalScript 
-	local script = Instance.new('LocalScript', TextButton_2)
+local function YDJK_fake_script() -- Title.LocalScript 
+	local script = Instance.new('LocalScript', Title)
 
 	
 	
-	button = script.Parent
-	
-	script.Parent.MouseButton1Click:Connect(function()
-	
-	local BoxFolder = game:GetService("Workspace").Boxes
-	
-	local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
-	
-	_G.CrateTP = true
-	
-	for i, v in pairs(BoxFolder:GetChildren()) do
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-		task.wait(0.25)
+	local delay2 = 0.5
+	local TextLabel = script.Parent 
+	while true do 
+		TextLabel.TextColor3 = Color3.new(255, 0, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 0.333333, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0, 0.482353, 1)
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 0, 0.498039)
+		wait(delay2) 
 	end
 	
-	BoxFolder.ChildAdded:Connect(function(child)
-		if _G.CrateTP then
-			pcall(function()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = child.CFrame
-			end)
-		end
-	end)
-	
-	end)
 end
-coroutine.wrap(PAFVZ_fake_script)()
-local function MLNJPA_fake_script() -- Frame.Smooth GUI Dragging 
-	local script = Instance.new('LocalScript', Frame)
+coroutine.wrap(YDJK_fake_script)()
+local function BPJWXT_fake_script() -- AutoCrate.RGBLocalScript 
+	local script = Instance.new('LocalScript', AutoCrate)
 
-	local UserInputService = game:GetService("UserInputService")
-	local runService = (game:GetService("RunService"));
+	--LocalScript
+	--put this script in a TextLabel
 	
-	local gui = script.Parent
+	local delay2 = 0.5
+	local TextLabel = script.Parent 
+	while true do 
+		TextLabel.TextColor3 = Color3.new(255, 0, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 0.333333, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0, 0.482353, 1)
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 0, 0.498039)
+		wait(delay2) 
+	end
 	
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
-	
-	function Lerp(a, b, m)
-		return a + (b - a) * m
-	end;
-	
-	local lastMousePos
-	local lastGoalPos
-	local DRAG_SPEED = (8); -- // The speed of the UI darg.
-	function Update(dt)
-		if not (startPos) then return end;
-		if not (dragging) and (lastGoalPos) then
-			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
-			return 
-		end;
-	
-		local delta = (lastMousePos - UserInputService:GetMouseLocation())
-		local xGoal = (startPos.X.Offset - delta.X);
-		local yGoal = (startPos.Y.Offset - delta.Y);
-		lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
-		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
-	end;
-	
-	gui.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = gui.Position
-			lastMousePos = UserInputService:GetMouseLocation()
-	
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-	
-	gui.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			dragInput = input
-		end
-	end)
-	
-	runService.Heartbeat:Connect(Update)
 end
-coroutine.wrap(MLNJPA_fake_script)()
+coroutine.wrap(BPJWXT_fake_script)()
+local function PMAP_fake_script() -- AutoCrate.LocalScript 
+	local script = Instance.new('LocalScript', AutoCrate)
+
+	script.Parent.MouseButton1Click:connect(function()
+		for _1,v1 in pairs(game.Workspace.Boxes:GetChildren()) do
+			if v1:IsA("MeshPart") or v1:IsA("Part") then
+				local OldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v1.CFrame
+				wait(.1)
+				firetouchinterest(v1,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+				firetouchinterest(v1,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+				wait(.1)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldPos
+			end
+		end
+	
+		game.Workspace.Boxes.ChildAdded:Connect(function(v1)
+			wait(.5)
+			if v1:IsA("MeshPart") or v1:IsA("Part") then
+				local OldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v1.CFrame
+				wait(.1)
+				firetouchinterest(v1,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+				firetouchinterest(v1,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+				wait(.1)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldPos
+			end
+		end)
+		repeat wait() until game:IsLoaded()
+		game.StarterGui:SetCore(
+			"SendNotification",
+			{
+				Title = "AutoCrate Script",
+				Text = "Script Made By DINO#1390"
+			}
+		)
+	end)
+	
+end
+coroutine.wrap(PMAP_fake_script)()
+local function HQAOP_fake_script() -- LayOut3.RGBLocalScript 
+	local script = Instance.new('LocalScript', LayOut3)
+
+	--LocalScript
+	--put this script in a TextLabel
+	
+	local delay2 = 0.5
+	local TextLabel = script.Parent 
+	while true do 
+		TextLabel.TextColor3 = Color3.new(255, 0, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 0.333333, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0, 0.482353, 1)
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 0, 0.498039)
+		wait(delay2) 
+	end
+	
+end
+coroutine.wrap(HQAOP_fake_script)()
+local function GPNR_fake_script() -- LayOut3.LocalScript 
+	local script = Instance.new('LocalScript', LayOut3)
+
+	script.Parent.MouseButton1Click:connect(function()
+		while true do
+			wait(3)
+			local args = {
+				[1] = "Load",
+				[2] = "Layout3"
+			}
+	
+			game:GetService("ReplicatedStorage").Layouts:InvokeServer(unpack(args))
+			-----------------------------------------------------------
+			local args = {
+				[1] = 26
+			}
+	
+			game:GetService("ReplicatedStorage").Rebirth:InvokeServer(unpack(args))
+		end
+	end)
+	
+end
+coroutine.wrap(GPNR_fake_script)()
+local function BPKA_fake_script() -- LayOut2.RGBLocalScript 
+	local script = Instance.new('LocalScript', LayOut2)
+
+	--LocalScript
+	--put this script in a TextLabel
+	
+	local delay2 = 0.5
+	local TextLabel = script.Parent 
+	while true do 
+		TextLabel.TextColor3 = Color3.new(255, 0, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 0.333333, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0, 0.482353, 1)
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 0, 0.498039)
+		wait(delay2) 
+	end
+	
+end
+coroutine.wrap(BPKA_fake_script)()
+local function ETIPTII_fake_script() -- LayOut2.LocalScript 
+	local script = Instance.new('LocalScript', LayOut2)
+
+	script.Parent.MouseButton1Click:connect(function()
+		while true do
+			wait(3)
+			local args = {
+				[1] = "Load",
+				[2] = "Layout2"
+			}
+	
+			game:GetService("ReplicatedStorage").Layouts:InvokeServer(unpack(args))
+			-----------------------------------------------------------
+			local args = {
+				[1] = 26
+			}
+	
+			game:GetService("ReplicatedStorage").Rebirth:InvokeServer(unpack(args))
+		end
+	end)
+	
+	
+end
+coroutine.wrap(ETIPTII_fake_script)()
+local function ETKTF_fake_script() -- LayOut1.RGBLocalScript 
+	local script = Instance.new('LocalScript', LayOut1)
+
+	--LocalScript
+	--put this script in a TextLabel
+	
+	local delay2 = 0.5
+	local TextLabel = script.Parent 
+	while true do 
+		TextLabel.TextColor3 = Color3.new(255, 0, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 0.333333, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(1, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 1, 0) 
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0, 0.482353, 1)
+		wait(delay2) 
+		TextLabel.TextColor3 = Color3.new(0.333333, 0, 0.498039)
+		wait(delay2) 
+	end
+	
+end
+coroutine.wrap(ETKTF_fake_script)()
+local function TFQYGFC_fake_script() -- LayOut1.LocalScript 
+	local script = Instance.new('LocalScript', LayOut1)
+
+	script.Parent.MouseButton1Click:connect(function()
+		while true do
+			wait(3)
+			local args = {
+				[1] = "Load",
+				[2] = "Layout1"
+			}
+	
+			game:GetService("ReplicatedStorage").Layouts:InvokeServer(unpack(args))
+			-----------------------------------------------------------
+			local args = {
+				[1] = 26
+			}
+	
+			game:GetService("ReplicatedStorage").Rebirth:InvokeServer(unpack(args))
+		end
+	end)
+	
+end
+coroutine.wrap(TFQYGFC_fake_script)() 
