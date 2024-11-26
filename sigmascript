@@ -1,157 +1,209 @@
-local UIS = game:GetService("UserInputService")
+local Run = game:GetService("RunService")
+local Hub = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/kavo-Ui-Library/main/source.lua"))()
+local NPCs = game:GetService("Workspace").Map:FindFirstChild("TrickOrTreaters")
+
+local colors = {
+    SchemeColor = Color3.fromRGB(50,50,50),
+    Background = Color3.fromRGB(30,30,30),
+    Header = Color3.fromRGB(40,40,40),
+    TextColor = Color3.fromRGB(255, 150, 0),
+    ElementColor = Color3.fromRGB(20, 20, 20)
+}
+local MainWindow = Hub.CreateLib("MH Candy Hub",colors)
+local MainTab = MainWindow:NewTab("Auto Farm")
+local OtherTab = MainWindow:NewTab("Other Stuff")
+local UiTab = MainWindow:NewTab("UI Options")
+local AutoMine = false
+local AutoCollect = false
+local AutoUpgrade  =false
 local Player = game.Players.LocalPlayer
-local GUI = Player.PlayerGui.GUI
-local tycoon = Player.PlayerTycoon.Value
-local NotiType =  game.Players.LocalPlayer:WaitForChild("PlayerSettings"):WaitForChild("ToggleNINS") 
-local Main = GUI.Menu
-local Menu = require(Main.Menu)
-local Sounds = GUI.Menu.Menu.Sounds
-local NotiPrompt = require(GUI.NoticePrompt.InputPrompt.NoticePrompt)
-local InputPrompt = require(GUI.InputPrompt.InputPrompt.InputPrompt)
-local Ores = game.Workspace.DroppedParts:FindFirstChild(tycoon.Name)
-local Resetters = {"Tesla Resetter","Tesla Refuter","Black Dwarf","Void Star","The Final Upgrader","The Ultimate Sacrifice","Daestrophe"}
-local Item = tycoon:FindFirstChild("Plasma Iron Polisher")
-local Cash = GUI:FindFirstChild("Money")
-local MoneyLib = require(game.ReplicatedStorage.MoneyLib)
-local Ore = nil
-local Furnace = nil
-local BoostOres = false
-local AutoRB = false
-local DisableManual = false
-_G.Layout = "Layout1"--Chosen layout
---local SaveOreLimit = tonumber(math.ceil(GUI.Settings.Menu.PrimaryUtil.AdjustOreLimit.Progress.Slider.Slider.Position.X.Scale*250))
-local Tween = require(game:GetService("ReplicatedFirst").Tween);
+local Tycoon = Player.PlayerTycoon.Value
+local Popup = Player.PlayerGui.GUI.InputPrompt.InputPrompt
+local Ores = game.Workspace.DroppedParts:FindFirstChild(Tycoon.Name)
+local Mine
 
+local Upgraders = {
+	"Candy Castle",
+	"Candy Corn Real Estate",
+	"Candy Refiner",
+	"Candycorn Refiner",
+	"Chocolate Coater",
+	"Chocolate Forest",
+	"Frank'n'Cupcake",
+	"Giant Pretzel",
+	"Grand Wafer",
+	"Gummy Refiner",
+	"Hellish Bat Cookie",
+	"Lollipop-inator",
+	"Ore Caramelizer",
+	"Pumpkin Pie Refiner",
+	"Pumpkin Spice Refiner",
+	"Sugar Corroder",
+	"The Cookinator",
+	"The Rock",
+}
+local Mines  = {"Swintite Mine",
+	"Super Swintite Mine",
+	"Pumpkinite Mine",
+	"Goliath Gumball Machine"
+}
 
-function Notify(Message,TextColor,BackgroundColor,Image)
-	Count = Count or 1
-	Message = Message or "Message"
-	TextColor = TextColor or Color3.fromRGB(255, 255, 255)
-	BackgroundColor = BackgroundColor or Color3.fromRGB(0, 0, 0)
-	Image = Image or "rbxassetid://2961493545"
-	local Template = GUI.Notifications.MessageTemplate:Clone()
-	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = Template.Exclaim
-	Template.Label.Text = Message
-	Template.Label.TextColor3 = TextColor
-	Template.BackgroundTransparency = 0
-	Template.Exclaim.ImageTransparency = 0
-	Template.Label.TextTransparency = 0
-	Template.Visible = true
-	Template.BackgroundColor3 = BackgroundColor
-	Template.Exclaim.Image = Image
-	Template.Size = UDim2.new(0.5,0,0,40)
-	Template.Parent = GUI.Notifications
+local Collectors = {
+	["Candy Center"] = 450,
+	["Candy Factory"] = 3800,
+	["Candy Metropolis"] = 9500
+}
 
-	--TweenItem(Template, 0)
-	wait(10)
-	--TweenItem(Template, 1)
-	Template:Destroy()
+function GetItems()
+	Mine = Tycoon:FindFirstChild("Swintite Mine") or  Tycoon:FindFirstChild("Pumpkinite Mine") 
+	for i,v in pairs(Collectors) do
+		if Tycoon:FindFirstChild(i)then 
+			Collect = Tycoon:FindFirstChild(i)
+			Count = Collect.Model.CounterPart.CandyTracker.Background.Amount
+            print("Picked ",Mine, Collect)
+		end
+	end 
 end
-function Boost(Ore)--(!)   script that boosts the ore
-	for i,v in pairs(tycoon:GetChildren())do
-		if v:FindFirstChild("ItemId") and not table.find(Resetters,v.Name) then 
-			if v.Model:FindFirstChild("Upgrade")  then 
-				spawn(function()
-					firetouchinterest(v.Model.Upgrade, Ore, 0) --0 is touch
-					wait(0.02)
-					firetouchinterest(v.Model.Upgrade, Ore, 1)
-				end)
-			elseif v.Model:FindFirstChild("Lava") then 
-				Furnace = v.Model.Lava
-			elseif v.Model:FindFirstChild("MiniLava") then
-				Furnace = v.Model.MiniLava
+
+function CollectNpc()
+    local SavePos =  Player.Character.HumanoidRootPart.CFrame
+      for i,v in pairs(NPCs:GetChildren()) do
+       if v:FindFirstChild("Internal")  then 
+           local Prompt = v.Internal:FindFirstChildWhichIsA("ProximityPrompt")
+           if Prompt then 
+               Player.Character.HumanoidRootPart.CFrame = v.Internal.CFrame 
+               wait(0.3)
+               fireproximityprompt(Prompt, 50)
+               wait(0.1)
+            end
+        end
+      end
+    local Die = game:GetService("Workspace").Map.Fargield.Internal.ProximityPrompt
+    Player.Character.HumanoidRootPart.CFrame = Die.Parent.CFrame 
+    wait(0.3)
+    fireproximityprompt(Die, 50)
+    wait(0.1)
+    local Box = game:GetService("Workspace").Map.SpookMcDook.Internal.ProximityPrompt
+    Player.Character.HumanoidRootPart.CFrame = Box.Parent.CFrame 
+    wait(0.3)
+    fireproximityprompt(Box, 50)
+    wait(0.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavePos
+end
+
+function Boost(Ore)
+	Ore.Anchored = true
+	for i,v in pairs(Upgraders) do
+		local Item = Tycoon:FindFirstChild(v)
+		if Item then 
+		    if Item:FindFirstChild("Upgrade") then 
+			firetouchinterest(Item.Model.Upgrade,Ore,0)
+			wait(0.01)
+			firetouchinterest(Item.Model.Upgrade,Ore,1) 
+		    else
+		    for _,Part in pairs(Item.Model:GetDescendants()) do
+		        if Part.Name == "Upgrade" then 
+		            firetouchinterest(Part,Ore,0)
+			        wait(0.01)
+			        firetouchinterest(Part,Ore,1)
+		        end
+		    end
+		    end
+		end
+	end
+	if Tycoon:FindFirstChild("Candy Core") then 
+		game:GetService("ReplicatedStorage").Pulse:FireServer()
+	end
+	wait(.5)
+	if AutoCollect == true then
+	firetouchinterest(Collect.Model.Lava,Ore,0)
+	firetouchinterest(Collect.Model.MiniLava,Ore,0)
+	else
+	Ore.Anchored = false
+	end
+end
+
+local SectionMainTab = MainTab:NewSection("Auto Candy")
+
+local AutoMineToggle = SectionMainTab:NewToggle("Auto Mine", "Activates a placed remote candy mine", function(state)
+  AutoMine = state
+  print(AutoMine)
+  Mine = Tycoon:FindFirstChild("Swintite Mine") or Tycoon:FindFirstChild("Pumpkinite Mine") 
+end)
+
+local AutoCollectToggle = SectionMainTab:NewToggle("Auto Collect", "Collects Candy from a candy center for you", function(state)
+  AutoCollect = state
+  print(AutoCollect)
+  
+end)
+
+local AutoUpgradeToggle = SectionMainTab:NewToggle("Auto Upgrade", "Upgardes the candy ores with placed candy upgarders", function(state)
+  AutoUpgrade = state
+  print(AutoCollect)
+end)
+
+local SectionOtherTab = OtherTab:NewSection("Npcs")
+
+if NPCs then 
+SectionOtherTab:NewButton("Auto collect Daily", "Collects all the rewards from the daily npcs", function()
+  CollectNpc()
+end)
+else
+  SectionOtherTab:NewLabel("Npcs not found(Not avaliable in solo)")
+end
+
+local ColorSelection = UiTab:NewSection("Ui Colors")
+
+ColorSelection:NewColorPicker("Scheme Color","", colors.SchemeColor, function(color)
+  Hub:ChangeColor("SchemeColor", color)
+  
+end)
+
+ColorSelection:NewColorPicker("Background Color","", colors.Background, function(color)
+   Hub:ChangeColor("Background", color)
+end)
+
+ColorSelection:NewColorPicker("Header Color","", colors.Header, function(color)
+    pHub:ChangeColor("Header", color)
+end)
+
+ColorSelection:NewColorPicker("Text Color","", colors.TextColor, function(color)
+    Hub:ChangeColor("TextColor", color)
+end)
+
+ColorSelection:NewColorPicker("Element Color","", colors.ElementColor, function(color)
+   Hub:ChangeColor("ElementColor", color)
+end)
+
+Ores.ChildAdded:Connect(function(Ore)
+	if table.find(Mines,Ore.Name) and AutoUpgrade == true then 
+		Boost(Ore)
+	end
+end)
+GetItems()
+Run.Stepped:Connect(function()
+	if AutoMine then 
+		if Mine == nil or Mine:FindFirstChild("Model") == nil or Collect == nil or Collect:FindFirstChild("Model") == nil then GetItems() return end 
+    	if tonumber(Count.Text)>= Collectors[Collect.Name] and AutoCollect then
+        	local Prompt = Collect.Model.Internal.ProximityPrompt
+        	fireproximityprompt(Prompt, 10)
+        else
+        	local Prompt = Mine.Model.Internal.ProximityPrompt
+        	local Mag = (Prompt.Parent.Position-Player.Character.HumanoidRootPart.Position).Magnitude
+        	if Mag > 20 then 
+        	    Player.Character.HumanoidRootPart.CFrame = Prompt.Parent.CFrame + Vector3.new(0,5,0)
+            	end
+		fireproximityprompt(Prompt, 10)
+    	end
+    end
+end)
+
+game.Players.LocalPlayer.PlayerGui.GUI.InputPrompt.Absorb.Changed:connect(function(property)
+	if property == "Visible" then
+		if string.match(string.lower(Popup.Title.Text),"would you like to collect") then
+			for i,v in pairs(getconnections(game.Players.LocalPlayer.PlayerGui.GUI.InputPrompt.InputPrompt.Yes.MouseButton1Click)) do
+				v:Fire()
 			end
-		end
-
-	end
-end
-
-function Reset(Ore,Upgrade)--(!)   Resets the ore tags
-	firetouchinterest(Upgrade, Ore, 0) --0 is touch
-	wait(0.02)
-	firetouchinterest(Upgrade, Ore, 1)
-end
-
-Ores.ChildAdded:Connect(function(Child)--(!)  detects when a ore is added to the game and then upgrades it if Boost is on
-	if BoostOres == true then
-		Child.Anchored = true
-		Boost(Child)
-		wait(0.2)
-		local tesla = tycoon:FindFirstChild("Tesla Refuter") or tycoon:FindFirstChild("Tesla Resetter")
-		local SacRes = tycoon:FindFirstChild("The Final Upgrader") or tycoon:FindFirstChild("The Ultimate Sacrifice")
-		local Stars = tycoon:FindFirstChild("Void Star") or tycoon:FindFirstChild("Black Dwarf")
-		local Dae = tycoon:FindFirstChild("Daestrophe")
-		if tesla then
-			Reset(Child,tesla.Model.Upgrade)
-			--wait(0.01)
-			Boost(Child)
-			wait(0.2)
-		end
-
-		if Dae then
-			Reset(Child,Dae.Model.Upgrade)
-		--	wait(0.01)
-			Boost(Child)
-			wait(0.2)
-		end
-
-		if SacRes then 
-			Reset(Child,SacRes.Model.Upgrade)
-		--	wait(0.01)
-			Boost(Child)
-			wait(0.2)
-		end
-
-		if Stars then 
-			Reset(Child,Stars.Model.Upgrade)
-		--	wait(0.01)
-			Boost(Child)
-			wait(0.2)
-		end
-
-		if Furnace then
-			Child.CFrame = Furnace.CFrame + Vector3.new(0,1,0)
-			Child.Anchored = false
-		else
-			print("No furnace")
-		end
-	end
-end)
-
-UIS.InputBegan:Connect(function(Input)
-	if Input.KeyCode == Enum.KeyCode.G then 
-		if BoostOres then 
-			BoostOres = false
-			DisableManual = true
-			Notify("Ore Boosting: Off",Color3.fromRGB(255,255,255),Color3.fromRGB(30,30,30),"http://www.roblox.com/asset/?id=7265270534")
-		else
-			DisableManual = false
-			BoostOres = true
-			Notify("Ore Boosting: On",Color3.fromRGB(255,255,255),Color3.fromRGB(30,30,30),"http://www.roblox.com/asset/?id=7265270534")
-		end
-	elseif Input.KeyCode == Enum.KeyCode.H then 
-		--AutoRB = not AutoRB
-		if AutoRB then  
-			AutoRB = false
-			Notify("Auto rebirth: Off",Color3.fromRGB(255,255,255),Color3.fromRGB(30,30,30),"http://www.roblox.com/asset/?id=7265270534")
-		else
-			AutoRB = true
-			Notify("Auto rebirth: On",Color3.fromRGB(255,255,255),Color3.fromRGB(30,30,30),"http://www.roblox.com/asset/?id=7265270534")
-		end
-
-	end
-end)
-Cash.Changed:Connect(function()--(!)  detects change to money and then if there is enough to rebirth it will the load your chosen layout.
-	local RBP = MoneyLib.RebornPrice(Player) --Players rebirth price
-	if AutoRB == true and Cash.Value > RBP then 
-		BoostOres = false
-		game.ReplicatedStorage.Rebirth:InvokeServer()
-		GUI.FocusWindow.Value = GUI.Layouts
-		game.ReplicatedStorage.Layouts:InvokeServer("Load",_G.Layout)
-		wait(0.1)
-		if DisableManual == false
-			BoostOres = true
 		end
 	end
 end)
